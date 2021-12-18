@@ -1,6 +1,8 @@
 package com.ddthien.itraining;
 
+import com.ddthien.itraining.core.PropertySourceConfig;
 import com.ddthien.itraining.lib.util.text.StringUtil;
+import com.ddthien.itraining.module.account.ModuleAccountConfig;
 import com.ddthien.itraining.security.WebResourceConfig;
 import com.ddthien.itraining.security.WebSecurityConfig;
 import org.slf4j.Logger;
@@ -19,6 +21,9 @@ import org.springframework.context.annotation.Configuration;
         basePackages = {
                 "com.ddthien.itraining",
                 "com.ddthien.itraining.module",
+                "com.ddthien.itraining.module.http.rest",
+                "com.ddthien.itraining.core",
+                "com.ddthien.itraining.core.http",
                 "com.ddthien.itraining.security"
         }
 )
@@ -44,6 +49,7 @@ public class ITrainingApplication {
         logger.info("Launch ServerApp with args: {}", StringUtil.joinStringArray(args, " "));
         Class<?>[] sources = {
                 WebSecurityConfig.class, WebResourceConfig.class, ITrainingApplication.class,
+                PropertySourceConfig.class, ModuleAccountConfig.class
         };
         context = SpringApplication.run(sources, args);
         isRunning(wait);

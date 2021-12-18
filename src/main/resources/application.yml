@@ -34,13 +34,14 @@ spring:
       connectionTimeout: 30000
       idleTimeout: 600000
       maxLifetime: 1800000
-    jdbcUrl: jdbc:h2:mem:iTraindb
-    driverClassName: org.h2.Driver
-    username: sa
-    password:
+      jdbc-url: jdbc:h2:mem:iTraindb
+      driver-class-name: org.h2.Driver
+      username: sa
+      password:
   jpa:
     open-in-view: false
     database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
   batch:
     jdbc:
       initialize-schema: always
