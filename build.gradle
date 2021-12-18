@@ -1,5 +1,7 @@
+import org.gradle.plugins.ide.eclipse.model.SourceFolder
+
 plugins {
-    id 'org.springframework.boot' version '2.6.1'
+    id 'org.springframework.boot' version '2.5.6'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
     id 'eclipse'
@@ -8,6 +10,48 @@ plugins {
 group = 'com.ddthien'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
+compileJava.options.encoding = 'UTF-8'
+
+project.ext {
+    slf4jVersion             = '1.7.25'
+    log4jVersion             = '2.10.0'
+    jacksonVersion           = '2.9.8'
+    swaggerVersion           = '2.9.2'
+
+    springBootVersion        = '2.3.1.RELEASE'
+    springFrameworkVersion   = '5.2.7.RELEASE'
+    springSecurityVersion    = '5.3.3.RELEASE'
+    springIntegrationVersion = '5.2.7.RELEASE'
+    springDataVersion        = '2.3.0.RELEASE'
+    springDataJpaVersion     = '2.3.0.RELEASE'
+
+    hibernateVersion          = '5.4.18.Final'
+    hibernateValidatorVersion = '5.4.3.Final'
+
+    jettyVersion             = "9.4.30.v20200611"
+}
+
+eclipse {
+    classpath {
+        downloadSources=true
+    }
+
+    project {
+    }
+}
+
+eclipse.classpath.defaultOutputDir = file( 'build/classes' )
+
+eclipse.classpath.file {
+    beforeMerged { classpath ->
+        classpath.entries.clear()
+    }
+    whenMerged {  cp ->
+        cp.entries.findAll { it instanceof SourceFolder && it.path.startsWith("src/main/") }*.output = "build/bin/main"
+        cp.entries.findAll { it instanceof SourceFolder && it.path.startsWith("src/test/") }*.output = "build/bin/test"
+        cp.entries.removeAll { it.kind == "output" }
+    }
+}
 
 configurations {
     compileOnly {
@@ -16,22 +60,52 @@ configurations {
 }
 
 repositories {
+    mavenLocal()
     mavenCentral()
+    maven { url "https://repo.spring.io/plugins-release" }
+    maven { url "https://repo.spring.io/milestone" }
+}
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
 }
 
+artifacts {
+    archives sourcesJar
+}
+
+
 dependencies {
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: slf4jVersion
+    implementation group: 'org.slf4j', name: 'slf4j-ext', version: slf4jVersion
+    implementation 'commons-beanutils:commons-beanutils:1.9.3'
+
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-web-services'
-    compileOnly 'org.projectlombok:lombok'
+    implementation 'org.projectlombok:lombok:1.18.16'
+    annotationProcessor 'org.projectlombok:lombok:1.18.16'
+
     runtimeOnly 'com.h2database:h2'
     runtimeOnly 'mysql:mysql-connector-java'
     runtimeOnly 'org.postgresql:postgresql'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
 }
 
 test {
     useJUnitPlatform()
+    forkEvery = 1
+    ignoreFailures = true
+    testLogging.showStandardStreams = true
+
+    filter {
+        includeTestsMatching "*UnitTest"
+    }
+
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
 }
