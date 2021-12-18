@@ -86,6 +86,26 @@ dependencies {
     implementation 'org.projectlombok:lombok:1.18.16'
     annotationProcessor 'org.projectlombok:lombok:1.18.16'
 
+    implementation group: "org.springframework.security", name: "spring-security-core", version: springSecurityVersion
+    implementation group: "org.springframework.security", name: "spring-security-config", version: springSecurityVersion
+    implementation group: "org.springframework.security", name: "spring-security-web", version: springSecurityVersion
+    implementation group: "org.springframework.security", name: "spring-security-crypto", version: springSecurityVersion
+    implementation group: "org.springframework.security", name: "spring-security-rsa", version: "1.0.1.RELEASE"
+
+    implementation group: 'io.swagger', name: 'swagger-models', version: '1.5.20'
+    implementation group: 'io.swagger', name: 'swagger-annotations', version: '1.5.20'
+    implementation group: 'io.springfox', name: 'springfox-core', version: swaggerVersion
+    implementation group: 'io.springfox', name: 'springfox-spi', version: swaggerVersion
+    implementation group: 'io.springfox', name: 'springfox-schema', version: swaggerVersion
+    implementation group: 'io.springfox', name: 'springfox-swagger-common', version: swaggerVersion
+    implementation group: 'io.springfox', name: 'springfox-swagger2', version: swaggerVersion
+    implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: swaggerVersion
+    implementation group: 'io.springfox', name: 'springfox-spring-web', version: swaggerVersion
+    implementation group: 'org.springframework.plugin', name: 'spring-plugin-core', version: '1.2.0.RELEASE'
+    implementation group: 'org.springframework.plugin', name: 'spring-plugin-metadata', version: '1.2.0.RELEASE'
+
+    implementation group: 'com.google.guava',  name: 'guava',        version: '31.0.1-jre'
+
     runtimeOnly 'com.h2database:h2'
     runtimeOnly 'mysql:mysql-connector-java'
     runtimeOnly 'org.postgresql:postgresql'
