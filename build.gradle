@@ -80,6 +80,9 @@ dependencies {
     implementation group: 'org.slf4j', name: 'slf4j-ext', version: slf4jVersion
     implementation 'commons-beanutils:commons-beanutils:1.9.3'
 
+    implementation group: 'ch.qos.logback', name: 'logback-core', version: '1.2.3'
+    implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-web-services'
