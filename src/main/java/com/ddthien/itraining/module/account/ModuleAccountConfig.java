@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 )
 @EnableJpaRepositories(
         basePackages = {
-                "com.ddthien.itraining.account.repository",
+                "com.ddthien.itraining.module.account.repository",
         }
 )
 
