@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { AppContext } from '../api/api';
-import { PluginManager } from './PluginManager';
+import { PluginManager } from '../app/plugin/PluginManager';
 
 import { UIBanner } from './UIBanner'
 import { UIFooter } from './UIFooter'
@@ -11,7 +11,7 @@ import { UIWorkspace } from './UIWorkspace'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./stylesheet.scss";
 
-export class UIApplication extends Component {
+export class UIComponents extends Component {
   appContext: AppContext;
   pluginManager: PluginManager;
 

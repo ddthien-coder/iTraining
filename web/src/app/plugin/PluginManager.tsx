@@ -1,4 +1,7 @@
-import { ApplicationPlugin }       from '../api/api';
+import { ApplicationPlugin }       from 'api/api';
+import { HelloApplicationPlugin }  from './hello';
+import { SampleApplicationPlugin } from './sample';
+import { AccountApplicationPlugin } from './account';
 
 export class PluginCategory {
   name:    string;
@@ -22,9 +25,9 @@ export class PluginManager {
     this.categories = new Map<string, PluginCategory>();
     this.plugins    = new Map<string, ApplicationPlugin>();
 
-    // this.addPlugin(new HelloApplicationPlugin());
-    // this.addPlugin(new SampleApplicationPlugin());
-    // this.addPlugin(new AccountApplicationPlugin());
+    this.addPlugin(new HelloApplicationPlugin());
+    this.addPlugin(new SampleApplicationPlugin());
+    this.addPlugin(new AccountApplicationPlugin());
   }
 
   getCategories() { return this.categories; }

@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Routes , Route } from "react-router-dom";
 
-import { UIHello } from "./UIHello";
-import { UIApplication } from "./components/UIApplication";
+import { UIHello } from "./views/UIHello";
+import { UIComponents } from "./components/UIComponents";
 import reportWebVitals from './reportWebVitals';
 
 import './stylesheet.scss';
@@ -12,7 +12,7 @@ function AppRouter() {
   let router = (
     <Router>
       <Routes>
-        <Route path="/" element={<UIApplication />} />
+        <Route path="/" element={<UIComponents />} />
         <Route path="/hello" element={<UIHello />} />
       </Routes>
     </Router>

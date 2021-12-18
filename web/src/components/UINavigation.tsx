@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import {Button} from 'reactstrap'
 
 import {AppContextProps, AppEvent} from '../api/api';
-import {PluginManager} from './PluginManager';
+import {PluginManager} from '../app/plugin/PluginManager';
 
 interface UINavigationProps extends AppContextProps {
   pluginManager: PluginManager;
