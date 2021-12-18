@@ -20,7 +20,8 @@ import java.util.List;
         }
 )
 @JsonInclude(Include.NON_NULL)
-@NoArgsConstructor @Setter @Getter
+@NoArgsConstructor
+@Setter @Getter
 public class Account extends AbstractPersistable<Long> {
     static public enum AccountType { User, Organization }
 

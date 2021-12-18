@@ -3,6 +3,7 @@ package com.ddthien.itraining;
 import com.ddthien.itraining.core.PropertySourceConfig;
 import com.ddthien.itraining.lib.util.text.StringUtil;
 import com.ddthien.itraining.module.account.ModuleAccountConfig;
+import com.ddthien.itraining.module.employee.ModuleEmployeeConfig;
 import com.ddthien.itraining.security.WebResourceConfig;
 import com.ddthien.itraining.security.WebSecurityConfig;
 import org.slf4j.Logger;
@@ -49,7 +50,7 @@ public class ITrainingApplication {
         logger.info("Launch ServerApp with args: {}", StringUtil.joinStringArray(args, " "));
         Class<?>[] sources = {
                 WebSecurityConfig.class, WebResourceConfig.class, ITrainingApplication.class,
-                PropertySourceConfig.class, ModuleAccountConfig.class
+                PropertySourceConfig.class, ModuleAccountConfig.class, ModuleEmployeeConfig.class
         };
         context = SpringApplication.run(sources, args);
         isRunning(wait);
