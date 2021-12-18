@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 
 import { AppContext } from '../api/api';
 import { PluginManager } from '../app/plugin/PluginManager';

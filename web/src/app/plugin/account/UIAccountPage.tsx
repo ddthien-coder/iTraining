@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { UIAccount } from './UIAccount';
 import { UIAccountList } from './UIAccountList';
 
@@ -17,7 +17,7 @@ import { UIAccountList } from './UIAccountList';
  * -----------------------------------------------------------------------
  */
 
-import { AppContext } from 'api/api';
+import { AppContext } from '../../../api/api';
 
 interface UIAccountPageProps {
   appContext: AppContext;

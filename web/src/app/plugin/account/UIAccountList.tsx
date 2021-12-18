@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 
-import { AppContext } from 'api/api';
+import { AppContext } from '../../../api/api';
 
 interface UIAccountListProps {
   appContext: AppContext;

@@ -1,4 +1,4 @@
-import { ApplicationPlugin }       from 'api/api';
+import { ApplicationPlugin }       from '../../api/api';
 import { HelloApplicationPlugin }  from './hello';
 import { SampleApplicationPlugin } from './sample';
 import { AccountApplicationPlugin } from './account';

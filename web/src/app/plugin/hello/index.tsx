@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import  {Component} from 'react';
 
-import { AppContext, ApplicationPlugin } from 'api/api';
+import { AppContext, ApplicationPlugin } from '../../../api/api';
 
 interface UIHelloApplicationPluginProps {
   appContext: AppContext;
