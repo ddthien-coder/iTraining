@@ -1,4 +1,4 @@
-package com.ddthien.itraining.lib.util.text;
+package com.ddthien.itraining.lib.util;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
