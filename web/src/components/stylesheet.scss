@@ -1,0 +1,70 @@
+@import "../configuration.scss";
+
+.ui-application {
+  margin: 1px;
+  border: 1px solid lightgray;
+
+  display:   flex;
+  flex-flow: column;
+  padding: 2px;
+  height: 100%;
+}
+
+.ui-application .ui-banner {
+  margin: 1px;
+  border: 1px solid lightgray;
+
+  padding: 0px; margin: 0px;
+  height: 50px;
+
+  > h3 {
+    margin: auto;
+    width: 300px;
+    text-align: center;
+  }
+}
+
+.ui-application .ui-footer {
+  margin: 1px;
+  border: 1px solid lightgray;
+
+  padding: 0px; margin: 0px;
+  height: 50px;
+
+  > h3 {
+    margin: auto;
+    width: 300px;
+    text-align: center;
+  }
+}
+
+.ui-application .ui-navigation {
+  display: flex;
+  flex-grow: 0;
+  flex-flow: column;
+  padding: 0px; margin: 0px;
+  width: 200px;
+  margin: 1px;
+  border: 1px solid lightgray;
+
+  .ui-section {
+    margin: 1px;
+    border: 1px solid lightgray;
+
+    padding: 5px;
+
+    > h3 {
+      font-size: 1.1em;
+      font-weight: bold;
+      border-bottom: 1px dashed lightgray;
+    }
+  }
+}
+
+.ui-application .ui-workspace {
+  display: flex;
+  flex-grow: 1;
+  padding: 0px; margin: 0px;
+  margin: 1px;
+  border: 1px solid lightgray;
+}
