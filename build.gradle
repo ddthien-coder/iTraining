@@ -86,6 +86,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-web-services'
+    implementation 'org.springframework.boot:spring-boot-starter-cache'
     implementation 'org.projectlombok:lombok:1.18.16'
     implementation 'com.zaxxer:HikariCP:5.0.0'
     annotationProcessor 'org.projectlombok:lombok:1.18.16'
@@ -111,6 +112,13 @@ dependencies {
 
     implementation group: 'com.google.guava',  name: 'guava',        version: '31.0.1-jre'
     implementation group: 'javax.validation', name: 'validation-api', version: '1.1.0.Final'
+
+    //cache
+    implementation group: 'com.github.ben-manes.caffeine', name: 'caffeine', version: '3.0.3'
+    implementation group: 'javax.cache', name: 'cache-api', version: '1.1.1'
+    implementation group: 'org.ehcache', name: 'ehcache', version: '3.9.4'
+    implementation group: 'org.glassfish.jaxb', name: 'jaxb-runtime', version: '2.3.1'
+    implementation group: 'com.sun.istack', name: 'istack-commons-runtime', version: '4.0.1'
 
     runtimeOnly 'com.h2database:h2'
     runtimeOnly 'mysql:mysql-connector-java'

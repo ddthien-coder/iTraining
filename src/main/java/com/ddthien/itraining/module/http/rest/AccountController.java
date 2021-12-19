@@ -17,7 +17,7 @@ import java.util.concurrent.Callable;
 
 @Api(value = "ddthien", tags = { "account" })
 @RestController
-@RequestMapping("/rest/account")
+@RequestMapping("/rest/v1.0.0/account")
 public class AccountController extends BaseController {
 
     @Autowired

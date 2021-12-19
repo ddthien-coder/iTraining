@@ -30,7 +30,7 @@ public class WebResourceConfig extends WebMvcConfigurationSupport {
                 ignoredParameterTypes(HttpServletRequest.class, HttpSession.class).
                 select().
                 apis(RequestHandlerSelectors.basePackage("com.ddthien.itraining.module.http.rest")).
-                paths(regex("/rest/.*")).
+                paths(regex("/rest/v1.0.0/.*")).
                 build().
                 apiInfo(metaData());
     }

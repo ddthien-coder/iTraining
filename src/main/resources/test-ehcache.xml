@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config
+        xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+        xmlns:jsr107='http://www.ehcache.org/v3/jsr107'
+        xmlns='http://www.ehcache.org/v3'
+        xsi:schemaLocation=" http://www.ehcache.org/v3 http://www.ehcache.org/schema/ehcache-core-3.1.xsd http://www.ehcache.org/v3/jsr107 http://www.ehcache.org/schema/ehcache-107-ext-3.1.xsd">
+
+    <service>
+        <jsr107:defaults default-template="default" enable-management="false" enable-statistics="true">
+            <jsr107:cache name="generic" template="default"/>
+            <jsr107:cache name="domain1" template="default"/>
+            <jsr107:cache name="domain2" template="default"/>
+        </jsr107:defaults>
+    </service>
+
+    <persistence directory="./build/ehcache"/>
+
+    <cache-template name="default">
+        <resources>
+            <heap unit="entries">20</heap>
+            <offheap unit="MB">1</offheap>
+            <disk unit="MB" persistent="false">10</disk>
+        </resources>
+    </cache-template>
+
+    <cache alias="generic" uses-template="default"/>
+    <cache alias="entity" uses-template="default"/>
+    <cache alias="domain1" uses-template="default"/>
+    <cache alias="domain2" uses-template="default"/>
+</config>
