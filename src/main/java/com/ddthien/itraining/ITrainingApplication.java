@@ -21,6 +21,7 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan(
         basePackages = {
                 "com.ddthien.itraining",
+                "com.ddthien.itraining.lib",
                 "com.ddthien.itraining.module",
                 "com.ddthien.itraining.module.http.rest",
                 "com.ddthien.itraining.core",
