@@ -1,6 +1,6 @@
 package com.ddthien.itraining.module.employee.entity;
 
-import com.ddthien.itraining.core.entity.AbstractPersistable;
+import com.ddthien.itraining.core.entity.PersistableEntity;
 import com.ddthien.itraining.module.account.entity.Account;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -19,7 +19,7 @@ import java.util.Date;
 @JsonInclude(Include.NON_NULL)
 @Getter
 @Setter
-public class Employee extends AbstractPersistable<Long> {
+public class Employee extends PersistableEntity<Long> {
     @NotNull
     @OneToOne(optional = false)
     @JoinColumn(name = "accountId")

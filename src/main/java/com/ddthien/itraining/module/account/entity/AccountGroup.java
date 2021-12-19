@@ -1,7 +1,7 @@
 package com.ddthien.itraining.module.account.entity;
 
-import com.ddthien.itraining.core.entity.AbstractPersistable;
 import com.ddthien.itraining.core.entity.EntityAttribute;
+import com.ddthien.itraining.core.entity.PersistableEntity;
 import com.ddthien.itraining.lib.util.text.StringUtil;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +15,7 @@ import java.util.List;
 @Entity
 @Table(name = "AccountGroup")
 @NoArgsConstructor @Setter @Getter
-public class AccountGroup extends AbstractPersistable<Long> {
+public class AccountGroup extends PersistableEntity<Long> {
 
     @NotNull
     private String name;

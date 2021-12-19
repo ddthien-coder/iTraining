@@ -1,6 +1,6 @@
 package com.ddthien.itraining.module.account.entity;
 
-import com.ddthien.itraining.core.entity.AbstractPersistable;
+import com.ddthien.itraining.core.entity.PersistableEntity;
 import com.ddthien.itraining.lib.util.text.StringUtil;
 
 import javax.persistence.Entity;
@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
                 columnNames = { "loginId", "groupPath" }
         )
 )
-public class AccountMembership extends AbstractPersistable<Long> {
+public class AccountMembership extends PersistableEntity<Long> {
 
     @NotNull
     public String loginId;

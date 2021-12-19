@@ -1,7 +1,7 @@
 package com.ddthien.itraining.module.account.entity;
 
-import com.ddthien.itraining.core.entity.AbstractPersistable;
 import com.ddthien.itraining.core.entity.EntityAttribute;
+import com.ddthien.itraining.core.entity.PersistableEntity;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import lombok.Getter;
@@ -22,7 +22,7 @@ import java.util.List;
 @JsonInclude(Include.NON_NULL)
 @NoArgsConstructor
 @Setter @Getter
-public class Account extends AbstractPersistable<Long> {
+public class Account extends PersistableEntity<Long> {
     static public enum AccountType { User, Organization }
 
     @Enumerated(EnumType.STRING)
