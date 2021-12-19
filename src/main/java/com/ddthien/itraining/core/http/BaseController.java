@@ -6,7 +6,7 @@ import java.util.concurrent.Callable;
 import javax.servlet.http.HttpSession;
 
 import com.ddthien.itraining.core.common.ClientInfo;
-import com.ddthien.itraining.core.common.ErrorType;
+import com.ddthien.itraining.lib.util.error.ErrorType;
 import com.ddthien.itraining.core.common.ServiceError;
 import com.ddthien.itraining.core.http.rest.AuthenticationService;
 import com.ddthien.itraining.core.http.rest.ClientSession;

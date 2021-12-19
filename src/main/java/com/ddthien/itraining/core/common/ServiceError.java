@@ -1,5 +1,7 @@
 package com.ddthien.itraining.core.common;
 
+import com.ddthien.itraining.lib.util.error.ErrorType;
+
 public class ServiceError extends RuntimeException {
     private static final long serialVersionUID = 1L;
 

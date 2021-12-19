@@ -3,7 +3,7 @@ package com.ddthien.itraining.core.http;
 import java.lang.reflect.InvocationTargetException;
 
 
-import com.ddthien.itraining.core.common.ErrorType;
+import com.ddthien.itraining.lib.util.error.ErrorType;
 import com.ddthien.itraining.core.common.ServiceError;
 import com.ddthien.itraining.lib.util.jvm.JVMThread;
 import lombok.Getter;

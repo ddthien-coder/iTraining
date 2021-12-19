@@ -1,5 +1,6 @@
 package com.ddthien.itraining;
 
+import com.ddthien.itraining.core.DatasourceConfiguration;
 import com.ddthien.itraining.core.PropertySourceConfig;
 import com.ddthien.itraining.lib.util.text.StringUtil;
 import com.ddthien.itraining.module.account.ModuleAccountConfig;
@@ -52,7 +53,8 @@ public class ITrainingApplication {
         logger.info("Launch ServerApp with args: {}", StringUtil.joinStringArray(args, " "));
         Class<?>[] sources = {
                 WebSecurityConfig.class, WebResourceConfig.class, ITrainingApplication.class,
-                PropertySourceConfig.class, ModuleAccountConfig.class, ModuleEmployeeConfig.class
+                PropertySourceConfig.class, ModuleAccountConfig.class, ModuleEmployeeConfig.class,
+                DatasourceConfiguration.class
         };
         context = SpringApplication.run(sources, args);
         isRunning(wait);
