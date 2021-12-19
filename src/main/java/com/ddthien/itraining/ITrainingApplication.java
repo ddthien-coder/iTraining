@@ -25,6 +25,7 @@ import org.springframework.context.annotation.Configuration;
                 "com.ddthien.itraining.module",
                 "com.ddthien.itraining.module.http.rest",
                 "com.ddthien.itraining.core",
+                "com.ddthien.itraining.core.http.rest",
                 "com.ddthien.itraining.core.http",
                 "com.ddthien.itraining.security"
         }

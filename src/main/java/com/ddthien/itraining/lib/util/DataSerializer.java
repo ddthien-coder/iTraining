@@ -3,6 +3,7 @@ package com.ddthien.itraining.lib.util;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.Reader;
@@ -12,6 +13,7 @@ import java.io.Writer;
 import java.nio.charset.Charset;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonFactory;
@@ -20,6 +22,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.ObjectCodec;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.JsonSerializer;
@@ -30,9 +33,12 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.SerializerProvider;
 
+/**
+ * $Author: Tuan Nguyen$
+ **/
 public class DataSerializer {
-    final static public  Charset UTF8 = Charset.forName("UTF-8") ;
-    final static public DateFormat COMPACT_DATE_TIME = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss 'GMT'Z")  ;
+    final static public Charset        UTF8              = Charset.forName("UTF-8");
+    final static public DateFormat     COMPACT_DATE_TIME = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss 'GMT'Z");
 
     final static public DataSerializer JSON = new DataSerializer(new MappingJsonFactory()) ;
 
@@ -50,8 +56,7 @@ public class DataSerializer {
         }
     }
 
-    public void setIgnoreUnknownProperty(boolean b) {
-    }
+    public void register(Module module) { mapper.registerModule(module); }
 
     public <T> byte[] toBytes(T idoc)  {
         try {
@@ -82,6 +87,12 @@ public class DataSerializer {
         return mapper.convertValue(node, tref);
     }
 
+
+    public List<?> fromJsonNodeToArrayList(JsonNode node, TypeReference<ArrayList<?>> tref)  {
+        return mapper.convertValue(node, tref);
+    }
+
+
     public <T> T fromBytes(byte[] data, Class<T> type)  {
         try {
             ByteArrayInputStream inStream = new ByteArrayInputStream(data);
@@ -105,10 +116,10 @@ public class DataSerializer {
     public <T> String toString(T idoc) {
         if(idoc == null) return "" ;
         try  {
-            StringWriter writer = new StringWriter() ;
+//      StringWriter writer = new StringWriter() ;
             ObjectWriter owriter  = mapper.writerWithDefaultPrettyPrinter() ;
-            owriter.writeValue(writer, idoc);
-            return writer.toString() ;
+//      owriter.writeValue(writer, idoc);
+            return owriter.writeValueAsString(idoc) ;
         } catch(IOException ex) {
             throw new RuntimeException(ex) ;
         }
@@ -123,15 +134,35 @@ public class DataSerializer {
         }
     }
 
-    public <T> JsonNode toJsonNode(T idoc) throws IOException {
+    public <T> List<T> fromStringToList(String data, TypeReference<List<T>> tref)  {
+        StringReader reader = new StringReader(data) ;
+        return mapper.convertValue(reader, tref);
+    }
+
+    public <T> T fromInputStream(InputStream is, String encoding, Class<T> type) {
+        try {
+            Reader reader = new InputStreamReader(is, encoding) ;
+            T value = mapper.readValue(reader , type);
+            is.close();
+            return value;
+        } catch (IOException e) {
+            throw new RuntimeException(e) ;
+        }
+    }
+
+    public <T> JsonNode toJsonNode(T idoc) {
         return mapper.convertValue(idoc, JsonNode.class) ;
     }
 
-    public  String toString(JsonNode node) throws IOException {
-        StringWriter writer = new StringWriter() ;
-        ObjectWriter owriter  = mapper.writerWithDefaultPrettyPrinter() ;
-        owriter.writeValue(writer, node);
-        return writer.toString() ;
+    public  String toString(JsonNode node) {
+        try {
+            StringWriter writer = new StringWriter() ;
+            ObjectWriter owriter  = mapper.writerWithDefaultPrettyPrinter() ;
+            owriter.writeValue(writer, node);
+            return writer.toString() ;
+        } catch (IOException e) {
+            throw new RuntimeException(e) ;
+        }
     }
 
     public <T> T fromString(String data, TypeReference<T> typeRef) {
@@ -149,15 +180,27 @@ public class DataSerializer {
     }
 
     public <T> T clone(T obj) {
+        return clone((Class<T>)obj.getClass(), obj);
+    }
+
+    public <T> T clone(Class<T> type, T obj) {
         try  {
             Writer writer = new StringWriter() ;
             ObjectWriter owriter  = mapper.writerWithDefaultPrettyPrinter() ;
             owriter.writeValue(writer, obj);
             String json =  writer.toString() ;
-            return (T) fromString(json, obj.getClass()) ;
+            return (T) fromString(json, type) ;
         } catch(IOException ex) {
             throw new RuntimeException(ex) ;
         }
+    }
+
+    public <T> List<T> cloneList(List<T> list)  {
+        ArrayList<T> holder = new ArrayList<>();
+        for(T sel : list) {
+            holder.add(clone(sel));
+        }
+        return holder;
     }
 
     static public class GenericTypeDeserializer extends JsonDeserializer<Object> {
@@ -185,9 +228,15 @@ public class DataSerializer {
         }
     }
 
+    static public <T> T jsonClone(T obj) { return JSON.clone(obj); }
+
+    static public <T> T jsonClone(Class<T> type, T obj) { return JSON.clone(type, obj); }
+
     static public void configure(ObjectMapper mapper) {
         mapper.configure(JsonParser.Feature.AUTO_CLOSE_SOURCE, false) ;
+        mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
         mapper.setDateFormat(COMPACT_DATE_TIME) ;
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 }

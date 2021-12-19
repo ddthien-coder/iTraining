@@ -8,6 +8,7 @@ import com.ddthien.itraining.module.account.service.AccountService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -17,10 +18,14 @@ import java.util.concurrent.Callable;
 @Api(value = "ddthien", tags = { "account" })
 @RestController
 @RequestMapping("/rest/account")
-@AllArgsConstructor
 public class AccountController extends BaseController {
 
-    final AccountService accountService;
+    @Autowired
+    private AccountService accountService;
+
+    protected AccountController() {
+        super("account", "/account");
+    }
 
     @ApiOperation(value = "Find all accounts", responseContainer = "List", response = Account.class)
     @GetMapping("account/all")
