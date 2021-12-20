@@ -1,0 +1,180 @@
+@import "../../configuration.scss";
+
+.v-grid {
+  @include flex-hbox();
+  padding: 1px;
+  margin: 0px;
+
+  .v-grid-control {
+    margin-right: 2px;
+
+    > .title {
+      background-color: var(--bg-dark, darkgray);
+    }
+
+    .handle {
+      cursor: ew-resize;
+      width: 3px;
+      background-color: var(--bg-dark, darkgray);
+    }
+
+    .expand-content {
+      overflow: hidden;
+    }
+  }
+
+  .v-grid-toolbar {
+    padding: 1px;
+
+    .btn {
+      border-radius: 0px;
+    }
+
+    .btn-view {
+      color: var(--info, darkgray);
+      font-weight: bold;
+      border-bottom: none;
+    }
+
+    .btn-group {
+      border-radius: 0px;
+      margin-right: 1px;
+
+      .btn, .dropdown-toggle {
+        padding: 2px 5px ;
+      }
+
+      .form-control {
+        height: 2em !important;
+        padding: 2px !important;
+      }
+    }
+  }
+
+  .v-grid-dynamic-views {
+    padding: 3px;
+    border-bottom: 1px solid var(--white, white);
+
+    .tab:first-child {
+      border-left: 1px solid var(--info, gray);
+    }
+
+    .tab {
+      background-color: var(--info);
+      border-right: 1px solid var(--info, gray);
+      margin: 0px 2px;
+    }
+    
+    .tab-selected {
+      background-color: var(--bg-info-muted) !important;
+    }
+
+    .btn {
+      font-weight: bold;
+      color: var(--white);
+    }
+  }
+
+  .grid-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 0;
+
+    > .grid {
+      .cell {
+        padding: 0.35em;
+        text-align: right;
+        white-space:   nowrap;
+        overflow:      hidden;
+        text-overflow: ellipsis;
+        border-right: 1px solid whitesmoke;
+
+        .btn-link {
+          display: inline-block;
+          padding: 0px;
+          text-align: left;
+        }
+
+        .form-control {
+          background-color: #f5f7faf5;
+        }
+      }
+
+      .cell-text { text-align: left; }
+      .cell-text-right { text-align: right; }
+      .cell-text-center { text-align: center; }
+      .cell-number { text-align: right; }
+      .cell-date { text-align: right; }
+      .cell-align-right { text-align: right; }
+
+      .cell-header {
+        background-color: var(--grid-cell-header,lightgray);
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        align-items: center;
+
+        padding: 0px 2px;
+        font-weight: bold;
+        border-right: 1px solid white;
+      }
+
+      .cell-tree {
+        text-align: left;
+      }
+
+      .cell-even-even {
+        background-color: var(--grid-cell-even-even, white);
+      }
+
+      .cell-even-odd {
+        background-color: var(--grid-cell-even-even, white);
+      }
+
+      .cell-odd-even {
+        background-color: var(--grid-cell-odd-even, lightgray);
+      }
+
+      .cell-odd-odd {
+        background-color: var(--grid-cell-odd-odd, lightgray);
+      }
+
+      .cell-state-new {
+        color: var(--info, gray);
+      }
+
+      .cell-state-deleted {
+        text-decoration: line-through ;
+        .btn {
+          text-decoration: line-through ;
+        }
+      }
+
+      .cell-state-modified {
+        color: var(--warning, darkgray) ;
+        .btn {
+          color: var(--warning, darkgray) ;
+        }
+      }
+    }
+  }
+
+  .v-grid-grid-view {
+    padding: 0px;
+  }
+}
+
+.Grid {
+  border: 1px solid #d9dddd;
+}
+
+.GridItemEven,
+.GridItemOdd {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.GridItemEven {
+  background-color: #f8f8f0;
+}

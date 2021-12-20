@@ -1,0 +1,172 @@
+@import "../../configuration.scss";
+
+.ui-calendar-manager {
+  border: 1px solid lightgray;
+
+  .ui-calendar-toolbar {
+    margin: 1px 0px;
+    padding: 1px;
+    border: 1px solid lightgray;
+
+    .header {
+      font-size: 1em;
+      font-weight: bold;
+    }
+
+    .btn, .form-control, .dropdown-toggle {
+      padding: 2px 5px;
+    }
+  }
+
+  > .ui-calendar-workspace {
+    @include flex-vbox();
+  }
+
+  .ui-mini-month-calendar {
+    margin: 10px;
+
+    .control {
+      padding: 2px;
+
+      .dropdown-toggle {
+        background-color: transparent;
+        color: black;
+        border: none;
+        outline: none;
+      }
+    }
+
+    .cell {
+      display: flex;
+      justify-content: center;
+      width:  13% !important ;
+      padding: 5px 2px;
+      min-width: 35px ;
+      margin: 1px;
+      color:  black;
+      background-color: transparent;
+      border: 1px solid lightgray;
+      border-radius: 5px;
+
+      .btn {
+        padding: 0px;
+        margin: 0px;
+      }
+    }
+
+    .cell-header {
+      color:  blue;
+    }
+
+    .cell-selected {
+      background: lightgray;
+    }
+
+    .cell-preview {
+      color:  gray;
+    }
+  }
+
+  .ui-month-calendar {
+    padding: 0px 2px;
+
+    .cell{
+      display: flex;
+      flex-direction: column;
+      margin: 1px 0px;
+
+      width: 14% !important;
+      min-width:  65px;
+      min-height: 65px;
+      border: 1px solid lightgray;
+
+      .label {
+        cursor: pointer;
+        padding: 2px;
+        font-size: 1.1em;
+        font-weight: bold;
+        color: var(--info,black);
+      }
+
+      .content {
+        padding: 2px;
+      }
+    }
+
+    .cell-header {
+      background-color: lightgray;
+      align-items:     center;
+      justify-content: center;
+      min-height: 30px;
+    }
+
+    .cell-selected {
+      border: 1px solid var(--bg-info-nuted, gray);
+    }
+
+    .cell-preview {
+      background-color: var(--bg-light-muted,lightgray);
+    }
+  }
+
+  .ui-week-calendar {
+    padding: 2px;
+
+    .cell {
+      display: flex;
+      flex-direction: column;
+      margin:  1px 0px;
+      padding: 2px;
+      width: 13%;
+      min-height: 50px;
+      border: 1px solid #d9d9d9;
+    }
+
+    .cell-header {
+      max-height: 30px ;
+      min-height: 30px;
+      background-color: lightgray;
+      align-items:     center;
+      justify-content: center;
+    }
+
+    .cell-time {
+      width: 70px;
+      align-items:     center;
+      justify-content: center;
+    }
+
+    .cell-selected {
+      background-color: var(--bg-light-muted,lightgray);
+    }
+
+    .cell-highlight {
+      border: 1px solid var(--bg-info,lightgray);
+    }
+  }
+
+  .ui-day-calendar {
+    .highlight {
+      border: 2px dashed slateblue;
+    }
+
+    .cell {
+      display: flex;
+      flex-direction: column;
+      margin:  1px ;
+      padding:  2px ;
+      min-height: 50px;
+      border: 1px solid #d9d9d9;
+    }
+
+    .cell-time {
+      width: 70px;
+      align-items:     center;
+      justify-content: center;
+    }
+
+    .cell-content {
+      flex-grow: 1;
+    }
+  }
+}

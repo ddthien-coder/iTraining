@@ -1,0 +1,62 @@
+@import "../../configuration.scss";
+
+.draft-js-editor {
+  @include flex-vbox();
+
+  > .DraftEditor-root {
+    @include flex-vbox();
+    padding: 5px;
+    border: 1px solid lightgray;
+    background-color: var(--white, white);
+  }
+}
+
+.draft-js-toolbar {
+  margin: 2px 0px;
+  border: 1px solid lightgray;
+  @include flex-hbox-grow-0();
+
+  .separator {
+    display: inline-block;
+    margin: 2px;
+    width: 2px;
+    background-color: lightgray;
+  }
+
+  .button-wrapper {
+    display: inline-block;
+    padding: 2px ;
+    margin: 1px;
+
+    .button {
+      display: inline-block;
+      padding: 2px;
+      margin: 0px 1px;
+      font-size: 12px;
+      border: 0;
+      height: 22px;
+      width: 22px;
+      border-radius: 4px;
+      border: 1px solid lightgray;
+      background-color:  transparent;
+    }
+
+    .button > svg {
+      height: 18px !important;
+      width: 18px !important;
+    }
+
+    .button:hover, .button:focus {
+      background: #444;
+      outline: 0; /* reset for :focus */
+    }
+
+    .active {
+      color: #6a9cc9;
+    }
+
+    .active svg {
+      fill: #6a9cc9;
+    }
+  }
+}

@@ -1,0 +1,87 @@
+server:
+  port: 7080
+  compression:
+    enabled: true
+    min-response-size: 2048
+    mime-types: text/html,text/xml,text/plain,text/css,application/json,application/xml,application/javascript
+  servlet:
+    contextPath: /
+    session:
+      timeout: 1h
+    multipart:
+      max-request-size: 30MB
+      max-file-size: 10MB
+
+---
+spring:
+  main:
+    banner-mode: console
+    allow-bean-definition-overriding: false
+  output:
+    ansi:
+      enabled: ALWAYS
+
+
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 200MB
+      max-request-size: 215MB
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      connectionTimeout: 30000
+      idleTimeout: 600000
+      maxLifetime: 1800000
+    jdbcUrl: jdbc:h2:mem:itTraindb
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    open-in-view: false
+    database-platform: org.hibernate.dialect.H2Dialect
+  batch:
+    jdbc:
+      initialize-schema: always
+  h2:
+    console:
+      enabled: true
+  hibernate:
+    dialect: org.hibernate.dialect.H2Dialect
+---
+hibernate:
+  dialect: org.hibernate.dialect.H2Dialect
+
+---
+logging:
+  config: classpath:logback-console.xml
+
+---
+hibernate:
+  hbm2ddl:
+    auto: update
+---
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  devtools:
+    active: dev
+    restart:
+      enabled: false
+---
+app:
+  data:
+    init-sample: true
+    init-demo: false
+  home: build/tmp/app
+  config:
+    dir: build/tmp/config
+  upload:
+    dir: build/tmp/upload
+  storage:
+    dir: build/tmp/data/storage
+---
+storage:
+  service:
+    dir: build/tmp/storage/service

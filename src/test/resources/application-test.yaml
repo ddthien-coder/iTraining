@@ -1,0 +1,26 @@
+spring:
+  main:
+    banner-mode: off
+    allow-bean-definition-overriding: true
+  batch:
+    initialize-schema: always
+
+db:
+  jdbc:
+    driver: org.hibernate.dialect.H2Dialect
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password:
+
+hibernate:
+  show-sql: false
+
+logging:
+  level:
+    org: DEBUG
+    org.hibernate: INFO
+    org.eclipse.jetty: INFO
+    org.springframework: DEBUG
+    org.springframework.aop.framework.Cglib2AopProxy: WARN
+    com: INFO
+    com.ddthien: DEBUG

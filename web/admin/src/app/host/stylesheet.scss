@@ -1,0 +1,69 @@
+@import "../../configuration.scss";
+.ui-webos {
+  margin: 0px !important;
+}
+
+.ui-webos .ui-banner {
+  .w-logo {
+    font-weight: bold;
+    font-size: 1.25em;
+    border-right: 1px solid lightgray;
+  }
+  .w-logo:hover {
+    background: steelblue;
+  }
+
+  .w-tabs {
+    > .w-tab {
+      display: flex;
+      align-items: center;
+      padding: 0px 5px;
+      font-size: 0.9em;
+      font-weight: bold;
+      border-left: 1px solid lightgray;
+      border-right: 1px solid lightgray;
+    }
+  }
+
+  .w-admin {
+    display: flex;
+    align-items: center;
+    font-size: 0.9em;
+    padding: 0em 1em;
+    border-left: 1px solid rgb(12, 7, 7);
+
+    .dropdown-toggle {
+      padding: 0.5em 2px;
+      font-weight: bold;
+    }
+
+    .dropdown-menu {
+      width: 250px;
+    }
+  }
+}
+
+.ui-webos-app-menu {
+  border: 2px outset #0a0a0a;
+
+  .app-group {
+    margin-top: 10px;
+
+    .title {
+      font-size: 1.1em;
+      font-weight: bold;
+    }
+  }
+
+  .app {
+    padding: 5px;
+    margin:  2px;
+
+    .btn {
+      display: block;
+      padding: 2px 0px;
+      font-size: 1.1em;
+      text-align: left;
+    }
+  }
+}

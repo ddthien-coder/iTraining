@@ -1,63 +1,20 @@
-import org.gradle.plugins.ide.eclipse.model.SourceFolder
-
 plugins {
     id 'org.springframework.boot' version '2.5.6'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+    id 'java-library'
     id 'eclipse'
 }
 
-group = 'com.ddthien'
+project.ext {
+    springSecurityVersion    = '5.3.3.RELEASE'
+    springfoxVersion         = '3.0.0'
+    jacksonVersion           = '2.12.3'
+}
+group = 'com.devteam'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 compileJava.options.encoding = 'UTF-8'
-
-project.ext {
-    slf4jVersion             = '1.7.25'
-    log4jVersion             = '2.10.0'
-    jacksonVersion           = '2.9.8'
-    swaggerVersion           = '2.9.2'
-
-    springBootVersion        = '2.3.1.RELEASE'
-    springFrameworkVersion   = '5.2.7.RELEASE'
-    springSecurityVersion    = '5.3.3.RELEASE'
-    springIntegrationVersion = '5.2.7.RELEASE'
-    springDataVersion        = '2.3.0.RELEASE'
-    springDataJpaVersion     = '2.3.0.RELEASE'
-
-    hibernateVersion          = '5.4.18.Final'
-    hibernateValidatorVersion = '5.4.3.Final'
-
-    jettyVersion             = "9.4.30.v20200611"
-}
-
-eclipse {
-    classpath {
-        downloadSources=true
-    }
-
-    project {
-    }
-}
-
-eclipse.classpath.defaultOutputDir = file( 'build/classes' )
-
-eclipse.classpath.file {
-    beforeMerged { classpath ->
-        classpath.entries.clear()
-    }
-    whenMerged {  cp ->
-        cp.entries.findAll { it instanceof SourceFolder && it.path.startsWith("src/main/") }*.output = "build/bin/main"
-        cp.entries.findAll { it instanceof SourceFolder && it.path.startsWith("src/test/") }*.output = "build/bin/test"
-        cp.entries.removeAll { it.kind == "output" }
-    }
-}
-
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
-    }
-}
 
 repositories {
     mavenLocal()
@@ -65,67 +22,88 @@ repositories {
     maven { url "https://repo.spring.io/plugins-release" }
     maven { url "https://repo.spring.io/milestone" }
 }
-task sourcesJar(type: Jar, dependsOn: classes) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
-}
-
-artifacts {
-    archives sourcesJar
-}
-
 
 dependencies {
-    implementation group: 'org.slf4j', name: 'slf4j-api', version: slf4jVersion
-    implementation group: 'org.slf4j', name: 'slf4j-ext', version: slf4jVersion
-    implementation 'commons-beanutils:commons-beanutils:1.9.3'
-
-    implementation group: 'ch.qos.logback', name: 'logback-core', version: '1.2.3'
-    implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
-
+  implementation 'org.springframework.boot:spring-boot-starter-aop'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-web-services'
-    implementation 'org.springframework.boot:spring-boot-starter-cache'
-    implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'org.projectlombok:lombok:1.18.16'
+	implementation 'org.springframework.boot:spring-boot-starter-cache'
+	implementation'org.springframework.boot:spring-boot-starter-security'
+    implementation'org.springframework.boot:spring-boot-starter-web'
+    implementation"org.springframework.boot:spring-boot-starter-actuator"
+    implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+    implementation 'org.springframework.boot:spring-boot-starter-jersey'
+    implementation group: 'org.springframework.batch', name: 'spring-batch-core', version: '4.3.3'
+    implementation 'org.springframework.boot:spring-boot-devtools'
     implementation 'com.zaxxer:HikariCP:5.0.0'
-    annotationProcessor 'org.projectlombok:lombok:1.18.16'
-    implementation 'org.springframework.security:spring-security-core:5.6.0'
+    implementation 'org.springframework.integration:spring-integration-core:5.5.5'
+    implementation 'org.springframework:spring-messaging:5.3.10'
+    implementation group: "com.h2database", name: "h2", version: '1.4.200'
 
-    implementation group: 'io.swagger', name: 'swagger-models', version: '1.5.20'
-    implementation group: 'io.swagger', name: 'swagger-annotations', version: '1.5.20'
-    implementation group: 'io.springfox', name: 'springfox-core', version: swaggerVersion
-    implementation group: 'io.springfox', name: 'springfox-spi', version: swaggerVersion
-    implementation group: 'io.springfox', name: 'springfox-schema', version: swaggerVersion
-    implementation group: 'io.springfox', name: 'springfox-swagger-common', version: swaggerVersion
-    implementation group: 'io.springfox', name: 'springfox-swagger2', version: swaggerVersion
-    implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: swaggerVersion
-    implementation group: 'io.springfox', name: 'springfox-spring-web', version: swaggerVersion
-    implementation group: 'org.springframework.plugin', name: 'spring-plugin-core', version: '1.2.0.RELEASE'
-    implementation group: 'org.springframework.plugin', name: 'spring-plugin-metadata', version: '1.2.0.RELEASE'
-    implementation group: 'commons-codec', name: 'commons-codec', version: '1.15'
-
-    implementation group: 'com.google.guava',  name: 'guava',        version: '31.0.1-jre'
-    implementation group: 'javax.validation', name: 'validation-api', version: '1.1.0.Final'
-
-    //cache
     implementation group: 'com.github.ben-manes.caffeine', name: 'caffeine', version: '3.0.3'
     implementation group: 'javax.cache', name: 'cache-api', version: '1.1.1'
     implementation group: 'org.ehcache', name: 'ehcache', version: '3.9.4'
     implementation group: 'org.glassfish.jaxb', name: 'jaxb-runtime', version: '2.3.1'
     implementation group: 'com.sun.istack', name: 'istack-commons-runtime', version: '4.0.1'
 
-    runtimeOnly 'com.h2database:h2'
-    runtimeOnly 'mysql:mysql-connector-java'
-    runtimeOnly 'org.postgresql:postgresql'
-    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    implementation 'commons-cli:commons-cli:1.2'
+    implementation 'commons-beanutils:commons-beanutils:1.9.3'
+    implementation group: 'com.google.guava', name: 'guava', version: '31.0.1-jre'
+    implementation group: 'io.swagger', name: 'swagger-models', version: '1.5.20'
+    implementation group: 'io.swagger', name: 'swagger-annotations', version: '1.5.20'
+    implementation group: 'io.swagger.core.v3', name: 'swagger-annotations', version: '2.1.9'
+    implementation group: 'io.swagger.core.v3', name: 'swagger-models', version: '2.1.9'
+
+    implementation group: 'org.mapstruct', name: 'mapstruct', version: '1.4.2.Final'
+    implementation group: 'io.springfox', name: 'springfox-core', version: springfoxVersion
+    implementation group: 'io.springfox', name: 'springfox-oas', version: springfoxVersion
+    implementation group: 'io.springfox', name: 'springfox-spi', version: springfoxVersion
+    implementation group: 'io.springfox', name: 'springfox-schema', version: springfoxVersion
+    implementation group: 'io.springfox', name: 'springfox-swagger-common', version: springfoxVersion
+    implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: springfoxVersion
+    implementation group: 'io.springfox', name: 'springfox-spring-web', version: springfoxVersion
+    implementation group: 'io.springfox', name: 'springfox-spring-webmvc', version: springfoxVersion
+    implementation group: 'io.springfox', name: 'springfox-spring-webflux', version: springfoxVersion
+
+    implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:${jacksonVersion}"
+    implementation "com.fasterxml.jackson.core:jackson-core:${jacksonVersion}"
+    implementation "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}"
+    implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+
+    implementation "dk.brics.automaton:automaton:1.11-8"
+
+    /*************************core/misc template, pdf deploy jars***************************/
+
+    implementation group: 'com.github.jknack', name: 'handlebars', version: '4.2.0'
+
+    implementation group: 'org.xhtmlrenderer', name: 'flying-saucer-core',  version: '9.1.22'
+    implementation group: 'org.xhtmlrenderer', name: 'flying-saucer-pdf',   version: '9.1.22'
+
+    implementation group: 'com.lowagie',  name: 'itext',  version: '2.1.7'
+    implementation group: 'com.itextpdf', name: 'itextpdf', version: '5.5.13.2'
+
+    implementation group: 'org.apache.poi', name: 'poi', version: '5.0.0'
+    implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '5.0.0'
+    implementation group: 'org.apache.poi', name: 'poi-ooxml-lite', version: '5.0.0'
+    implementation group: 'org.apache.xmlbeans', name: 'xmlbeans', version: '4.0.0'
+    implementation group: 'org.apache.commons', name: 'commons-collections4', version: '4.4'
+    implementation group: 'org.apache.commons', name: 'commons-compress', version: '1.20'
+
+    implementation 'mysql:mysql-connector-java:5.1.48'
+    implementation 'org.postgresql:postgresql:42.3.1'
+    implementation group: 'org.hsqldb',     name: 'hsqldb', version: '2.3.4'
+    implementation 'javax.xml.bind:jaxb-api:2.3.0'
+    compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+
+    implementation 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
     implementation group: 'junit', name: 'junit', version: '4.12'
     testRuntimeOnly "org.junit.platform:junit-platform-commons:1.7.0"
     implementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.7.2'
-
 }
 
 test {
@@ -142,3 +120,24 @@ test {
         events "passed", "skipped", "failed"
     }
 }
+task utest(type: Test) {
+    ignoreFailures = true
+    description = 'Runs Unit tests.'
+
+    //testLogging.showStandardStreams = true
+
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+
+    useJUnitPlatform {
+        includeTags('unit')
+    }
+
+}
+
+bootRun {
+    String activeProfile = System.properties['spring.profiles.active']
+    systemProperty "spring.profiles.active", activeProfile
+}
+

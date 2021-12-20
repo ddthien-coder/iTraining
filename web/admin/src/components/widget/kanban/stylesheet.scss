@@ -1,0 +1,90 @@
+@import "../../configuration.scss";
+
+.ui-dnd-board {
+  > .control {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: aliceblue;
+    padding: 5px 2px;
+
+    .btn {
+      margin: 1px;
+    }
+  }
+}
+
+.dnd-board {
+  overflow-x: scroll;
+
+  .column {
+    margin-right: 5px;
+    @include flex-vbox();
+
+    > .header {
+      display: flex;
+      justify-content: space-between;
+      vertical-align: baseline;
+      padding: 2px 5px;
+      border: 1px solid gray;
+      margin-bottom: 2px;
+
+      > h3 {
+        padding: 0px;
+        margin: 0px;
+        font-size: 1.35rem;
+      }
+
+      .actions {
+        display: flex;
+        vertical-align: baseline;
+
+        .btn {
+          padding: 2px;
+        }
+      }
+    }
+
+    > .list-body {
+      border: 1px solid lightgray;
+      outline: none;
+
+      .dnd-item {
+        margin: 2px;
+        border: 1px dashed lightgray;
+
+        .item {
+          padding: 2px;
+        }
+
+        .item-detail {
+          padding: 2px;
+        }
+      }
+    }
+
+    > .list-body-hightlight {
+      border: 2px dashed lightgray;
+      transition: 'background-color 0.2s ease';
+    }
+  }
+
+  .column-collapse {
+    display: flex;
+    flex-direction: column;
+    width: 25px;
+    padding: 1px 1px;
+    align-items: center;
+
+    > div {
+      flex-grow: 1;
+      cursor: pointer;
+      padding: 15px 0px; margin: 0px;
+      border: none;
+      background: lightgray;
+      writing-mode: vertical-rl;
+      min-width: 18px;
+    }
+  }
+}

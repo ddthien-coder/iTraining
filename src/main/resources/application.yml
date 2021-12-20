@@ -1,5 +1,5 @@
 server:
-  port: 7080
+  port: 9090
   compression:
     enabled: true
     min-response-size: 2048
@@ -21,7 +21,6 @@ spring:
     ansi:
       enabled: ALWAYS
 
-
   servlet:
     multipart:
       enabled: true
@@ -34,29 +33,20 @@ spring:
       connectionTimeout: 30000
       idleTimeout: 600000
       maxLifetime: 1800000
-    jdbcUrl: jdbc:h2:mem:iTraindb
-    driverClassName: org.h2.Driver
-    username: sa
-    password:
+    jdbcUrl: jdbc:postgresql://ec2-52-201-168-60.compute-1.amazonaws.com:5432/d60e6vvl8t7lq9
+    driverClassName: org.postgresql.Driver
+    username: zosypussmbaoad
+    password: 499a656f84716503c288c6ed799b6b0e2f05c6b98bfb52af7a1477a12a4c63a1
   jpa:
     open-in-view: false
-    database-platform: org.hibernate.dialect.H2Dialect
-    show-sql: true
-    hibernate:
-      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
   batch:
     jdbc:
       initialize-schema: always
-  h2:
-    console:
-      enabled: true
-      path: /h2-itrain
-  hibernate:
-    dialect: org.hibernate.dialect.H2Dialect
+
 ---
 hibernate:
-  dialect: org.hibernate.dialect.H2Dialect
-
+  dialect: org.hibernate.dialect.PostgreSQLDialect
 ---
 logging:
   config: classpath:logback-console.xml
@@ -65,3 +55,19 @@ logging:
 hibernate:
   hbm2ddl:
     auto: update
+---
+app:
+  data:
+    init-sample: true
+    init-demo: false
+  home: /tmp/app
+  config:
+    dir: /tmp/config
+  upload:
+    dir: /tmp/upload
+  storage:
+    dir: /tmp/data/storage
+---
+storage:
+  service:
+    dir: /tmp/storage/service

@@ -1,0 +1,195 @@
+@import "../configuration.scss";
+
+.w-upload-resource {
+  > .control {
+    display: flex;
+    align-items: center;
+
+    .btn { padding: 2px 5px; }
+  }
+
+  > .resource {
+    display: flex;
+    align-items: center;
+
+    span {
+      width: 135px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .btn { padding: 0px 3px; }
+  }
+}
+
+.ui-tabpane {
+  > .header {
+    padding: 2px 1px 0px 1px;
+    background-color: var(--bg-light, darkgray);
+    > .tabs {
+      > .tab {
+        @include flex-hbox-grow-0();
+        padding: 3px 10px;
+        border-bottom: none;
+        border-radius: 5px 5px 0px 0px;
+        font-size: 0.9em;
+        font-weight: bold;
+        border: 1px solid var(--info, gray);
+        border-bottom: none;
+      }
+
+      > .tab:hover { background: whitesmoke;  }
+    }
+
+    > .actions {
+      display: flex;
+      background: transparent;
+      padding: 5px;
+    }
+  }
+
+  > .content {
+    @include full-height-box();
+
+    > .tab {
+      @include full-height-box();
+      overflow-x: hidden;
+      overflow-y: auto;
+      scrollbar-width: thin;
+    }
+  }
+}
+
+.ui-tabpane-outline {
+  > .header {
+    border-bottom: 2px dashed lightgray;
+    background: transparent;
+
+    > .tabs {
+      > .tab {
+        padding: 0px 2px;
+
+        > .btn {
+          padding: 2px 5px 2px 0px;
+        }
+      }
+
+      > .tab-active {
+        > .btn {
+          color: steelblue;
+          border-radius: 0rem;
+        }
+      }
+    }
+  }
+}
+
+.vsplit {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+
+  > .vsplit-pane {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    margin: 0px 1px;
+
+    > .vsplit-title {
+      flex-grow: 0;
+      display: flex;
+      align-items: center;
+
+      > div {
+        cursor: pointer;
+        padding: 15px 0px; margin: 0px;
+        border: none;
+        background: lightgray;
+        writing-mode: vertical-rl;
+        min-width: 18px;
+      }
+
+      > div:hover {
+        background: slategray;
+      }
+    }
+
+    > .vsplit-content {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    > .vsplit-handle {
+      @include flex-vbox();
+      cursor: ew-resize;
+      background-color: var(--bg-muted, whitesmoke);
+
+      width: 3px;
+      max-width: 3px;
+      margin: 0px 1px;
+
+      > .div { width: 3px; }
+      > .btn {
+        padding: 0px; margin: 0px;
+        border: none;
+        width: 3px; height: 50px;
+      }
+    }
+  }
+}
+
+.hsplit {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  > .hsplit-pane {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    margin: 1px 0px;
+
+    > .hsplit-title {
+      display: flex;
+      flex-grow: 0;
+      flex-direction: column;
+      margin: 1px 0px;
+      justify-content: center;
+      cursor: pointer;
+      background-color: var(--bg-light, gray);
+
+      > div {
+        font-weight: bold;
+        padding: 2px 5px; margin: 0px;
+      }
+
+      > div:hover {
+        background: slategray;
+      }
+    }
+
+    > .hsplit-content {
+      @include flex-vbox();
+      margin: 1px 0px;
+    }
+
+    > .hsplit-handle {
+      @include flex-hbox();
+      justify-content: center;
+      cursor: ns-resize;
+      max-height: 3px;
+      margin: 1px 0px;
+      background-color: var(--bg-muted, whitesmoke);
+
+      > div { height: 3px; }
+      > .btn {
+        padding: 0px; margin: 0px;
+        border: none;
+        width:  50px;
+        height: 3px;
+      }
+    }
+  }
+}

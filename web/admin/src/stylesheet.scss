@@ -1,0 +1,151 @@
+@import "./bootstrap.scss";
+
+$light: rgb(236, 233, 233);
+$dark: rgb(168, 164, 164);
+$muted: rgb(141, 167, 207);
+
+$primary: rgb(32, 31, 32);
+
+$info: rgb(70, 130, 180);
+$success: rgb(46, 125, 128);
+$danger: #ff4136;
+
+$body-bg: whitesmoke;
+$body-color: black;
+
+$theme-colors: (
+  "light": $light,
+  "info": $info,
+  "primary": $primary,
+  "danger": $danger
+);
+
+@import "~bootstrap/scss/bootstrap";
+
+@mixin theme(
+  $name,
+  $primary, /* primary */
+  $secondary, /* secondary */
+  $info, /* info */
+  $success, /* success */
+  $warning, /* warning */
+  $danger, /* warning */
+  $light, /* light */
+  $dark, /* dark */
+  $muted, /* muted */
+  $white, /* white */
+  $body-bg, /* body-bg */
+  $body-color /*body-color*/
+  ) {
+  .#{$name}-theme {
+    $bg-primary: #{darken($primary, 0%)};
+    $bg-secondary: #{darken($primary, 0%)};
+
+    $bg-info: #{lighten($info, 0%)};
+    $bg-info-muted: #{lighten($info, 10%)};
+
+    $bg-light: #{lighten($light, 0%)};
+    $bg-muted: #{lighten($muted, 15%)};
+
+    --primary: #{$primary};
+    --secondary: #{$secondary};
+
+    --info: #{$info};
+    --success: #{$success};
+    --warning: #{$warning};
+    --danger: #{$danger};
+
+    --light: #{$light};
+    --dark: #{$dark};
+
+    --muted: #{$muted};
+    --white: #{$white};
+
+    --body-bg: #{$body-bg};
+    --body-color: #{$body-color};
+    --bg-light: #{$bg-light};
+    --bg-dark: #{$dark};
+    --bg-primary: #{$bg-primary};
+    --bg-primary: #{$bg-primary};
+    --bg-info: #{$bg-info};
+    --bg-info-muted: #{$bg-info-muted};
+    --bg-muted: #{$bg-muted};
+
+    // background-image: url('../public/css/themes/#{$name}/background.png');
+    background-color: transparent;
+
+    .body-bg {
+      background-color:  var(--body-bg);
+      opacity: 0.9;
+    }
+    .body-color { color: var(--body-color); }
+
+    .bg-light {
+      background-color: var(--bg-light) !important;
+    }
+    .bg-primary { background-color: var(--bg-primary) !important; }
+    .bg-info { background-color: var(--bg-info) !important; }
+    .bg-info-muted { background-color: #{$bg-info-muted} !important; }
+
+    .btn {
+      color: var(--primary);
+    }
+
+    .btn-link {
+      color: var(--secondary);
+      text-align: left;
+    }
+
+    .btn-primary { background-color: var(--primary); color: var(--white); }
+    .btn-outline-primary {
+      color: var(--primary);
+    }
+
+    .btn-outline-primary:disabled {
+      color: var(--muted);
+    }
+
+    .btn-secondary { background-color: var(--secondary); color: var(--white); }
+    .btn-info { background-color: var(--info); color: var(--white); }
+
+    .grid-container .grid {
+      --grid-cell-header: #{$bg-light};
+      --grid-cell-even-even: #{$body-bg};
+      --grid-cell-even-odd:  #{$body-bg};
+      --grid-cell-odd-even:  #{$bg-light};
+      --grid-cell-odd-odd:   #{$bg-light};
+    }
+  }
+}
+
+@include theme(
+  'light',
+  $primary, /* primary */
+  rgb(43, 73, 107), /* secondary */
+  $info, /* info */
+  $success, /* success */
+  $warning, /* warning */
+  $danger, /* warning */
+  $light, /* light */
+  $dark, /* dark */
+  $muted, /* muted */
+  $white, /* white */
+  $body-bg, /* body-bg */
+  $body-color /*body-color*/
+);
+
+@include theme(
+  'dark',
+  lightgray, /* primary */
+  $secondary, /* secondary */
+  rgb(179, 179, 194), /* info */
+  $success, /* success */
+  $warning, /* warning */
+  $danger, /* warning */
+  rgb(68, 67, 67), /* light */
+  whitesmoke, /* dark */
+  $muted, /* muted */
+  $white, /* white */
+  rgb(82, 79, 79), /* body-bg */
+  whitesmoke /*body-color*/
+);

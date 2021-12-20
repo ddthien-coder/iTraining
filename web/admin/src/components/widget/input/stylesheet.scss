@@ -1,0 +1,140 @@
+@import "../../configuration.scss";
+
+form, .form {
+  padding: 0.25em 0.25em;
+
+  .form-group-inline {
+    display: flex;
+  }
+
+  .form-group {
+    margin-bottom: 0.1rem;
+    padding: 2px 0px;
+  }
+
+  .form-control {
+    padding: 2px;
+    height: calc(1.5em + 5px);
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid rgb(207, 204, 204);
+    color: dimgray;
+  }
+
+  textarea.form-control {
+    display: block;
+    height: auto ;
+    border: 1px solid var(--bg-light, lightgray);
+    min-height: 3em;
+  }
+
+  .form-control:focus {
+    outline:none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+  }
+
+  .form-control:disabled, .form-control[readonly] {
+    background: whitesmoke;
+  }
+
+  .form-control:disabled:focus, .form-control[readonly]:focus {
+    background: lightgray;
+  }
+
+  .form-control-error {
+    border-bottom: 1px solid #d6a7a7	;
+    color:  #d6a7a7	;
+  }
+
+  .form-control-date-error {
+    border: 1px solid #d6a7a7	;
+  }
+
+  label {
+    margin: 0px;
+  }
+
+  select.form-control:not([size]):not([multiple]) {
+    height: 2rem;
+  }
+
+  input:focus, select:focus, textarea:focus, button:focus {
+    outline: none!important;
+  }
+
+
+  .btn-link,
+  .btn-outline-secondary {
+    padding: 2px 5px;
+  }
+
+  .btn-link,
+  .btn-link:hover {
+    text-decoration: none;
+  }
+
+  /*WDateTime widget*/
+  .rdt {
+    width: 100%;
+
+    input {
+      text-align: right;
+      min-width: 150px;
+    }
+
+    .rdtPicker {
+      right: 0px;
+    }
+  }
+
+  .input-number { text-align: right; }
+
+  .input-field { padding: 5px 0px; }
+}
+
+.form-control {
+  display: inline-block;
+}
+
+.w-autocomplete {
+  .dropdown {
+    display: block;
+
+    .dropdown-item {
+      padding: 2px 2px;
+
+      .option {
+        display: flex;
+
+        .label {
+          width: 120px;
+          min-width: 120px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .desc {
+          flex-grow: 1;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+
+    .dropdown-item.active {
+      background-color: lightgray;
+    }
+
+    .more { text-align: right; }
+
+    .create-new { font-weight: bold; }
+  }
+}
+
+.input-group-autocomplete .input-group-prepend {
+  display: inline-block;
+  padding: 0px;
+  margin: 0px;
+}
