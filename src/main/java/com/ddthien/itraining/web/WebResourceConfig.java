@@ -1,4 +1,4 @@
-package com.ddthien.itraining.security;
+package com.ddthien.itraining.web;
 
 import static springfox.documentation.builders.PathSelectors.regex;
 

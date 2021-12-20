@@ -2,11 +2,14 @@ package com.ddthien.itraining;
 
 import com.ddthien.itraining.core.DatasourceConfiguration;
 import com.ddthien.itraining.core.PropertySourceConfig;
+import com.ddthien.itraining.core.http.HttpConfig;
 import com.ddthien.itraining.lib.util.text.StringUtil;
 import com.ddthien.itraining.module.account.ModuleAccountConfig;
 import com.ddthien.itraining.module.employee.ModuleEmployeeConfig;
-import com.ddthien.itraining.security.WebResourceConfig;
-import com.ddthien.itraining.security.WebSecurityConfig;
+import com.ddthien.itraining.module.security.ModuleSecurityConfig;
+import com.ddthien.itraining.web.WebMVCConfig;
+import com.ddthien.itraining.web.WebResourceConfig;
+import com.ddthien.itraining.web.WebSecurityConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -23,12 +26,7 @@ import org.springframework.context.annotation.Configuration;
         basePackages = {
                 "com.ddthien.itraining",
                 "com.ddthien.itraining.lib",
-                "com.ddthien.itraining.module",
-                "com.ddthien.itraining.module.http.rest",
-                "com.ddthien.itraining.core",
-                "com.ddthien.itraining.core.http.rest",
-                "com.ddthien.itraining.core.http",
-                "com.ddthien.itraining.security"
+                "com.ddthien.itraining.web"
         }
 )
 @EnableConfigurationProperties
@@ -43,18 +41,18 @@ public class ITrainingApplication {
             args  = new String[] {
                     "--spring.cloud.zookeeper.enabled=false",
                     "--spring.http.multipart.enabled=true",
-                    "--security.basic.enable=false",
-                    "--security.ignored=/**",
+                    "--web.basic.enable=false",
+                    "--web.ignored=/**",
                     "--server.port=7080",
                     "--app.home=build/server"
             };
         }
 
-        logger.info("Launch ServerApp with args: {}", StringUtil.joinStringArray(args, " "));
+        logger.info("Launch ITrainingApp with args: {}", StringUtil.joinStringArray(args, " "));
         Class<?>[] sources = {
-                WebSecurityConfig.class, WebResourceConfig.class, ITrainingApplication.class,
+                WebSecurityConfig.class, WebResourceConfig.class, ITrainingApplication.class, WebMVCConfig.class,
                 PropertySourceConfig.class, ModuleAccountConfig.class, ModuleEmployeeConfig.class,
-                DatasourceConfiguration.class
+                DatasourceConfiguration.class, HttpConfig.class, ModuleSecurityConfig.class
         };
         context = SpringApplication.run(sources, args);
         isRunning(wait);
